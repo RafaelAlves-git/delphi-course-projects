@@ -31,7 +31,7 @@ Um sistema completo de gerenciamento de vendas desenvolvido em **Delphi**, utili
 | **Delphi** | Linguagem e ambiente de desenvolvimento |
 | **Zeos Library (ZeosDBO)** | Componentes para conexão e manipulação do banco de dados |
 | **Fortes Report Pro** | Gerador e emissor de relatórios |
-| **Banco de Dados** | *MySQL / PostgreSQL / Firebird / SQLite* |
+| **Banco de Dados** | *Firebird* |
 
 ---
 
