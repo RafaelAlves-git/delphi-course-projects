@@ -1,56 +1,55 @@
-🛒 Sistema de Vendas (Delphi)
-Um sistema completo de gerenciamento de vendas desenvolvido em Delphi, utilizando Zeos Library para conexão com banco de dados e Fortes Report para geração de relatórios.
+# 🛒 Sistema de Vendas
 
-📌 Objetivos do Projeto
-[x] Tela Base (Modelo): Padronização visual e de comportamento reaproveitada em todas as telas do sistema.
+Um sistema completo de gerenciamento de vendas desenvolvido em **Delphi**, utilizando **Zeos Library** para conexão e persistência de dados e **Fortes Report** para geração de relatórios gerenciais.
 
-[x] Autenticação: Tela de login para controle de acesso dos usuários.
+---
 
-[x] Cadastros (CRUD):
+## 📌 Objetivos do Projeto
 
-Usuários
+- [x] **Tela Base (Modelo):** Padronização visual e de comportamento reaproveitada em todo o sistema.
+- [x] **Autenticação:** Tela de Login para controle de acesso.
+- [x] **Cadastros (CRUD):**
+  - Usuários
+  - Clientes
+  - Produtos
+- [x] **Automação de Banco de Dados:**
+  - Criação automática de tabelas ao entrar no sistema.
+  - Atualização/migração automática de tabelas ao inicializar.
+- [x] **Módulo de Vendas:** Tela dedicada para registro e lançamento de vendas.
+- [x] **Relatórios (Fortes Report):**
+  - Relatório de Clientes
+  - Relatório de Produtos
+  - Relatório de Vendas por Período / Data
+- [x] **Conexão com Banco:** Acesso a dados via **Zeos Library**.
 
-Clientes
+---
 
-Produtos
+## 🛠️ Tecnologias e Componentes
 
-[x] Automação de Banco de Dados:
+| Tecnologia / Componente | Função no Projeto |
+| :--- | :--- |
+| **Delphi** | Linguagem e ambiente de desenvolvimento |
+| **Zeos Library (ZeosDBO)** | Componentes para conexão e manipulação do banco de dados |
+| **Fortes Report Pro** | Gerador e emissor de relatórios |
+| **Banco de Dados** | *MySQL / PostgreSQL / Firebird / SQLite* |
 
-Criação automática de tabelas ao inicializar o sistema.
+---
 
-Atualização/migração automática de tabelas ao entrar no sistema.
+## 🚀 Funcionalidades Detalhadas
 
-[x] Módulo de Vendas: Tela dedicada para realização e registro de vendas.
+### 🔒 Tela de Login e Controle de Acesso
+- Validação de usuários antes de permitir o acesso às demais rotinas do sistema.
 
-[x] Relatórios: Emissão de relatórios utilizando Fortes Report:
+### ⚙️ Auto-Migration (Banco de Dados)
+- O sistema gerencia a estrutura do banco de dados de forma autônoma: ao ser executado, cria as tabelas necessárias ou aplica atualizações pendentes sem depender de scripts manuais.
 
-Relatório de Clientes
+### 📋 Padronização com Form Base
+- Todas as telas do sistema herdam de um formulário modelo, garantindo consistência no layout e reaproveitamento de código.
 
-Relatório de Produtos
+### 📊 Relatórios Gerenciais
+- Emissão visual de dados sobre clientes, catálogo de produtos e vendas filtradas por intervalo de datas.
 
-Relatório de Vendas por Período / Data
-
-🛠️ Tecnologias e Bibliotecas Utilizadas
-Linguagem / IDE: Delphi
-
-Acesso ao Banco de Dados: Zeos Library (ZeosDBO)
-
-Gerador de Relatórios: Fortes Report Pro
-
-Banco de Dados: (ex: MySQL / PostgreSQL / SQLite / Firebird — ajuste conforme seu caso)
-
-🚀 Funcionalidades Principais
-🔒 Autenticação e Segurança
-Tela de login com validação de usuários cadastrados.
-
-⚙️ Auto-Migration (Banco de Dados)
-Ao executar a aplicação, o sistema verifica a estrutura do banco de dados, criando ou atualizando as tabelas automaticamente sem necessidade de scripts manuais externos.
-
-📋 Módulos de Cadastro
-Cadastros com estrutura modular herdada de uma Tela Modelo (Form Base), garantindo consistência na interface e facilidade de manutenção.
-
-📊 Relatórios Gerenciais (Fortes Report)
-Impressão e exportação de relatórios de Clientes, Produtos e histórico de Vendas filtradas por data.
+---
 
 ## Status
 
