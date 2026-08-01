@@ -1,0 +1,14 @@
+object dtmConexao: TdtmConexao
+  Height = 750
+  Width = 1000
+  PixelsPerInch = 120
+  object ConexaoDB: TFDConnection
+    Params.Strings = (
+      'Database=C:\Git\delphi-course-projects\BANCO.FDB'
+      'User_Name=SYSDBA'
+      'Password=masterkey'
+      'DriverID=FB')
+    Left = 88
+    Top = 40
+  end
+end

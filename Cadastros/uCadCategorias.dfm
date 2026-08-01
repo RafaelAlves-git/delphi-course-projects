@@ -1,0 +1,28 @@
+inherited frmCadCategoria: TfrmCadCategoria
+  Caption = 'Cadastro de Categorias'
+  StyleElements = [seFont, seClient, seBorder]
+  ExplicitLeft = 2
+  ExplicitTop = 2
+  TextHeight = 15
+  inherited Panel1: TPanel
+    StyleElements = [seFont, seClient, seBorder]
+    inherited dbnNavigator: TDBNavigator
+      Hints.Strings = ()
+    end
+  end
+  inherited pgcPrincipal: TPageControl
+    inherited tabListagem: TTabSheet
+      inherited pnlListagemTopo: TPanel
+        StyleElements = [seFont, seClient, seBorder]
+        inherited mskPesquisar: TMaskEdit
+          StyleElements = [seFont, seClient, seBorder]
+        end
+      end
+    end
+    inherited tabManutencao: TTabSheet
+      inherited Panel2: TPanel
+        StyleElements = [seFont, seClient, seBorder]
+      end
+    end
+  end
+end

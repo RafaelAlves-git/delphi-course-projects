@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls, Enter;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls;
 
 type
   TfrmPrincipal = class(TForm)
@@ -24,11 +24,9 @@ type
     procedure Sair1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Cliente2Click(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
 
   private
     { Private declarations }
-    TeclaEnter: TMREnter;
   public
     { Public declarations }
   end;
@@ -49,19 +47,9 @@ begin
   frmCadCategoria.Release;
 end;
 
-procedure TfrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  FreeAndNil(dtmConexao);
-  FreeAndNil(TeclaEnter);
-end;
-
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
 begin
   dtmConexao := TdtmConexao.Create(Self);
-
-  TeclaEnter := TMREnter.Create(Self);
-  TeclaEnter.FocusEnabled := True;
-  TeclaEnter.FocusColor := clInfoBk;
 end;
 
 procedure TfrmPrincipal.Sair1Click(Sender: TObject);

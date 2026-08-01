@@ -3,10 +3,7 @@ program Vendas;
 uses
   Vcl.Forms,
   untPrincipal in 'untPrincipal.pas' {frmPrincipal},
-  uConexao in 'DataModule\uConexao.pas' {dtmConexao: TDataModule},
-  uTelaHeranca in 'Heranca\uTelaHeranca.pas' {frmTelaHeranca},
-  uCadCategorias in 'Cadastros\uCadCategorias.pas' {frmCadCategoria},
-  Enter in 'Terceiros\Enter.pas';
+  uConexao in 'DataModule\uConexao.pas' {dtmConexao: TDataModule};
 
 {$R *.res}
 
@@ -14,5 +11,6 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TdtmConexao, dtmConexao);
   Application.Run;
 end.

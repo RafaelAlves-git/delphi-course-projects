@@ -4,9 +4,7 @@ uses
   Vcl.Forms,
   untPrincipal in 'untPrincipal.pas' {frmPrincipal},
   uConexao in 'DataModule\uConexao.pas' {dtmConexao: TDataModule},
-  uTelaHeranca in 'Heranca\uTelaHeranca.pas' {frmTelaHeranca},
-  uCadCategorias in 'Cadastros\uCadCategorias.pas' {frmCadCategoria},
-  Enter in 'Terceiros\Enter.pas';
+  uTelaHeranca in 'Heranca\uTelaHeranca.pas' {Form1};
 
 {$R *.res}
 
@@ -14,5 +12,6 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TForm1, Form1);
   Application.Run;
 end.
