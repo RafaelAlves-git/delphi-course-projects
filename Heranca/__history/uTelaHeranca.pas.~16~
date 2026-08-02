@@ -30,7 +30,6 @@ type
     btnAlterar: TBitBtn;
     qryListagem: TFDQuery;
     dtsListagem: TDataSource;
-    lblIndice: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure btnFecharClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);

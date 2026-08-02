@@ -3,7 +3,7 @@ object frmPrincipal: TfrmPrincipal
   Top = 0
   BorderStyle = bsSingle
   Caption = 'Projeto Vendas'
-  ClientHeight = 529
+  ClientHeight = 524
   ClientWidth = 739
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -17,7 +17,7 @@ object frmPrincipal: TfrmPrincipal
   TextHeight = 15
   object pnBot: TPanel
     Left = 0
-    Top = 488
+    Top = 483
     Width = 739
     Height = 41
     Align = alBottom

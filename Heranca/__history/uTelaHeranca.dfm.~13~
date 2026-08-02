@@ -22,8 +22,7 @@ object frmTelaHeranca: TfrmTelaHeranca
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitTop = 575
-    ExplicitWidth = 892
+    ExplicitTop = 585
     object btnNovo: TBitBtn
       Left = 0
       Top = 0
@@ -33,6 +32,8 @@ object frmTelaHeranca: TfrmTelaHeranca
       Caption = '&Novo'
       TabOrder = 0
       OnClick = btnNovoClick
+      ExplicitLeft = -6
+      ExplicitTop = 2
     end
     object dbnNavigator: TDBNavigator
       Left = 445
@@ -43,6 +44,7 @@ object frmTelaHeranca: TfrmTelaHeranca
       VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
       Align = alLeft
       TabOrder = 1
+      ExplicitTop = 2
     end
     object btnFechar: TBitBtn
       Left = 805
@@ -53,7 +55,7 @@ object frmTelaHeranca: TfrmTelaHeranca
       Caption = '&Fechar'
       TabOrder = 2
       OnClick = btnFecharClick
-      ExplicitLeft = 803
+      ExplicitTop = 2
     end
     object btnExcluir: TBitBtn
       Left = 356
@@ -64,6 +66,8 @@ object frmTelaHeranca: TfrmTelaHeranca
       Caption = '&Excluir'
       TabOrder = 3
       OnClick = btnExcluirClick
+      ExplicitLeft = 350
+      ExplicitTop = 2
     end
     object btnGravar: TBitBtn
       Left = 267
@@ -74,6 +78,8 @@ object frmTelaHeranca: TfrmTelaHeranca
       Caption = '&Gravar'
       TabOrder = 4
       OnClick = btnGravarClick
+      ExplicitLeft = 261
+      ExplicitTop = 2
     end
     object btnCancelar: TBitBtn
       Left = 178
@@ -84,6 +90,7 @@ object frmTelaHeranca: TfrmTelaHeranca
       Caption = '&Cancelar'
       TabOrder = 5
       OnClick = btnCancelarClick
+      ExplicitLeft = 8
     end
     object btnAlterar: TBitBtn
       Left = 89
@@ -94,6 +101,8 @@ object frmTelaHeranca: TfrmTelaHeranca
       Caption = '&Alterar'
       TabOrder = 6
       OnClick = btnAlterarClick
+      ExplicitLeft = 83
+      ExplicitTop = 2
     end
   end
   object pgcPrincipal: TPageControl
@@ -104,8 +113,7 @@ object frmTelaHeranca: TfrmTelaHeranca
     ActivePage = tabListagem
     Align = alClient
     TabOrder = 1
-    ExplicitWidth = 892
-    ExplicitHeight = 575
+    ExplicitTop = -6
     object tabListagem: TTabSheet
       Caption = 'Listagem'
       ImageIndex = 1
@@ -117,13 +125,6 @@ object frmTelaHeranca: TfrmTelaHeranca
         Align = alTop
         TabOrder = 0
         ExplicitTop = -6
-        object lblIndice: TLabel
-          Left = 16
-          Top = 17
-          Width = 88
-          Height = 15
-          Caption = 'Campo Pesquisa'
-        end
         object mskPesquisar: TMaskEdit
           Left = 16
           Top = 38

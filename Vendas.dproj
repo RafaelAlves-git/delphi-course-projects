@@ -143,6 +143,7 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Terceiros\Enter.pas"/>
+        <DCCReference Include="Heranca\uEnum.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
