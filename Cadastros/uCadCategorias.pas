@@ -9,12 +9,23 @@ uses
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Mask, Vcl.ComCtrls, Vcl.Buttons,
-  Vcl.DBCtrls, Vcl.ExtCtrls;
+  Vcl.DBCtrls, Vcl.ExtCtrls, uClassCategoria, uConexao, uEnum;
 
 type
   TfrmCadCategoria = class(TfrmTelaHeranca)
+    qryListagemID: TLargeintField;
+    qryListagemDESCRICAO: TStringField;
+    edtCategoriaID: TLabeledEdit;
+    edtCategoriaDescricao: TLabeledEdit;
+    procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnAlterarClick(Sender: TObject);
+    procedure grdListagemDblClick(Sender: TObject);
   private
     { Private declarations }
+    oCategoria: TCategoria;
+    function Excluir:Boolean; override;
+    function Gravar(EstadoDoCadastro: TEstadoDoCadastro):Boolean; override;
   public
     { Public declarations }
   end;
@@ -25,5 +36,72 @@ var
 implementation
 
 {$R *.dfm}
+
+{$region 'Override'}
+function TfrmCadCategoria.Excluir: Boolean;
+begin
+  if oCategoria.Selecionar(qryListagem.FieldByName('ID').AsInteger) then
+    Result := oCategoria.Excluir();
+end;
+
+function TfrmCadCategoria.Gravar(EstadoDoCadastro: TEstadoDoCadastro): Boolean;
+begin
+  if edtCategoriaID.Text <> EmptyStr then
+    oCategoria.Codigo := StrToInt(edtCategoriaID.Text)
+  else
+    oCategoria.Codigo := 0;
+
+  oCategoria.Descricao := edtCategoriaDescricao.Text;
+
+  if (EstadoDoCadastro = ecInserir) then
+    Result := oCategoria.Inserir
+  else
+    if (EstadoDoCadastro = ecAlterar) then
+      Result := oCategoria.Atualizar;
+
+
+end;
+
+procedure TfrmCadCategoria.grdListagemDblClick(Sender: TObject);
+begin
+  inherited;
+
+end;
+
+{$endRegion}
+
+procedure TfrmCadCategoria.btnAlterarClick(Sender: TObject);
+begin
+  if oCategoria.Selecionar(qryListagem.FieldByName('ID').AsInteger) then
+    begin
+      edtCategoriaID.Text := IntToStr(oCategoria.Codigo);
+      edtCategoriaDescricao.Text := oCategoria.Descricao;
+    end
+  else
+    begin
+      btnCancelar.Click;
+      Abort;
+    end;
+
+  inherited;
+
+end;
+
+procedure TfrmCadCategoria.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  if Assigned(oCategoria) then
+    FreeAndNil(oCategoria);
+
+end;
+
+procedure TfrmCadCategoria.FormCreate(Sender: TObject);
+begin
+  inherited;
+  oCategoria := TCategoria.Create(dtmConexao.ConexaoDB);
+  IndiceAtual := 'DESCRICAO';
+end;
+
+
 
 end.

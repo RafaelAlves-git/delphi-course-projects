@@ -1,0 +1,22 @@
+program Vendas;
+
+uses
+  Vcl.Forms,
+  untPrincipal in 'untPrincipal.pas' {frmPrincipal},
+  uConexao in 'DataModule\uConexao.pas' {dtmConexao: TDataModule},
+  uTelaHeranca in 'Heranca\uTelaHeranca.pas' {frmTelaHeranca},
+  uCadCategorias in 'Cadastros\uCadCategorias.pas' {frmCadCategoria},
+  Enter in 'Terceiros\Enter.pas',
+  uEnum in 'Heranca\uEnum.pas',
+  uClassCategoria in 'Classes\uClassCategoria.pas',
+  uCadCliente in 'Cadastros\uCadCliente.pas' {frmCadCliente};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TfrmCadCliente, frmCadCliente);
+  Application.Run;
+end.

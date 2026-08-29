@@ -1,0 +1,189 @@
+unit uClassCategoria;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls,
+  System.IniFiles, Data.DB,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf,
+  FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
+  FireDAC.Phys, FireDAC.Phys.FB, FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait,
+  FireDAC.Comp.Client, FireDAC.Comp.UI, FireDAC.Phys.IBBase;
+
+type
+  TCategoria = Class
+    private
+      ConexaoDB: TFDConnection;
+      F_ID: Integer;
+      F_Descricao: String;
+    function getCodigo: Integer;
+    function getDescricao: String;
+    procedure setCodigo(const Value: Integer);
+    procedure setDescricao(const Value: String);
+    public
+      constructor Create(aConexaoDB: TFDConnection);
+      destructor  Destroy; override;
+      function Inserir: Boolean;
+      function Atualizar: Boolean;
+      function Excluir: Boolean;
+      function Selecionar(ID: Integer): Boolean;
+    published
+      property Codigo: Integer read getCodigo write setCodigo;
+      property Descricao: String read getDescricao write setDescricao;
+  end;
+
+implementation
+
+
+{ TCategoria }
+
+{$region 'Constructor and Destructor'}
+constructor TCategoria.Create(aConexaoDB: TFDConnection);
+begin
+  ConexaoDB := aConexaoDB;
+end;
+
+destructor TCategoria.Destroy;
+begin
+
+  inherited;
+end;
+
+{$endRegion}
+
+{$region 'GETs'}
+function TCategoria.getCodigo: Integer;
+begin
+  Result := Self.F_ID;
+end;
+
+function TCategoria.getDescricao: String;
+begin
+  Result := Self.F_Descricao;
+end;
+{$endRegion}
+
+{$region 'SETs'}
+procedure TCategoria.setCodigo(const Value: Integer);
+begin
+  Self.F_ID := Value;
+end;
+
+procedure TCategoria.setDescricao(const Value: String);
+begin
+  Self.F_Descricao := Value;
+end;
+{$endRegion}
+
+{$region 'CRUD'}
+function TCategoria.Excluir: Boolean;
+var
+  qry: TFDQuery;
+begin
+  if MessageDlg('Apagar o Registro: '+ #13+
+                'Código: '+IntToStr(F_ID) + #13+
+                'Descrição: '+F_Descricao, mtConfirmation,[mbYes,mbNo], 0) = mrNo then
+    begin
+      Result := False;
+      Abort;
+    end;
+
+  qry := TFDQuery.Create(nil);
+  try
+    qry.Connection := ConexaoDB;
+    qry.SQL.Clear;
+    qry.SQL.Add('DELETE FROM CATEGORIAS');
+    qry.SQL.Add('    WHERE ID = (:pCategoriaID)');
+    qry.ParamByName('pCategoriaID').Value := Self.F_ID;
+    try
+      qry.ExecSQL();
+
+      Result := True;
+    except
+      Result := False;
+    end;
+  finally
+    if Assigned(qry) then
+      FreeAndNil(qry);
+  end;
+end;
+
+function TCategoria.Atualizar: Boolean;
+var
+  qry: TFDQuery;
+begin
+  qry := TFDQuery.Create(nil);
+  try
+    qry.Connection := ConexaoDB;
+    qry.SQL.Clear;
+    qry.SQL.Add('UPDATE CATEGORIAS');
+    qry.SQL.Add('    SET DESCRICAO = (:pCategoriaDescricao)');
+    qry.SQL.Add('    WHERE ID = (:pCategoriaID)');
+    qry.ParamByName('pCategoriaDescricao').Value := Self.F_Descricao;
+    qry.ParamByName('pCategoriaID').Value := Self.F_ID;
+    try
+      qry.ExecSQL();
+
+      Result := True;
+    except
+      Result := False;
+    end;
+  finally
+    if Assigned(qry) then
+      FreeAndNil(qry);
+  end;
+end;
+
+function TCategoria.Inserir: Boolean;
+var
+  qryInserir: TFDQuery;
+begin
+  qryInserir := TFDQuery.Create(nil);
+  try
+    qryInserir.Connection := ConexaoDB;
+    qryInserir.SQL.Clear;
+    qryInserir.SQL.Add('INSERT INTO CATEGORIAS (DESCRICAO)');
+    qryInserir.SQL.Add('                VALUES (:pDescricao)');
+    qryInserir.ParamByName('pDescricao').AsString := Self.F_Descricao;
+    try
+      qryInserir.ExecSQL;
+      Result := True;
+    except
+      Result := False;
+    end;
+  finally
+    if Assigned(qryInserir) then
+      FreeAndNil(qryInserir);
+  end;
+end;
+
+function TCategoria.Selecionar(ID: Integer): Boolean;
+var
+  qry: TFDQuery;
+begin
+  qry := TFDQuery.Create(nil);
+  try
+    qry.Connection := ConexaoDB;
+    qry.SQL.Clear;
+    qry.SQL.Add('SELECT ID, DESCRICAO FROM CATEGORIAS');
+    qry.SQL.Add('    WHERE ID = (:pCategoriaID)');
+    qry.ParamByName('pCategoriaID').Value := ID;
+    try
+      qry.Open();
+
+      Self.F_ID := qry.FieldByName('ID').AsInteger;
+      Self.F_Descricao := qry.FieldByName('DESCRICAO').AsString;
+      Result := True;
+    except
+      Result := False;
+    end;
+  finally
+    if Assigned(qry) then
+      FreeAndNil(qry);
+  end;
+end;
+{$endRegion}
+
+
+end.

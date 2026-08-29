@@ -7,7 +7,10 @@ uses
   uTelaHeranca in 'Heranca\uTelaHeranca.pas' {frmTelaHeranca},
   uCadCategorias in 'Cadastros\uCadCategorias.pas' {frmCadCategoria},
   Enter in 'Terceiros\Enter.pas',
-  uEnum in 'Heranca\uEnum.pas';
+  uEnum in 'Heranca\uEnum.pas',
+  uClassCategoria in 'Classes\uClassCategoria.pas',
+  uCadCliente in 'Cadastros\uCadCliente.pas' {frmCadCliente},
+  uClassCliente in 'Classes\uClassCliente.pas';
 
 {$R *.res}
 
@@ -15,5 +18,6 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
+  Application.CreateForm(TfrmCadCliente, frmCadCliente);
   Application.Run;
 end.

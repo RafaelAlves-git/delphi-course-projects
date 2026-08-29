@@ -2,20 +2,28 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2026/07/22 21:13:05.000.152,=C:\Users\alves\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2026/07/22 21:14:31.000.184,C:\Git\delphi-course-projects\untPrincipal.pas=C:\Users\alves\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2026/07/22 21:14:31.000.184,C:\Git\delphi-course-projects\untPrincipal.dfm=C:\Users\alves\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2026/07/22 21:14:36.000.568,C:\Git\delphi-course-projects\Vendas.dproj=C:\Users\alves\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2026/07/22 21:14:31.000.184,C:\Users\alves\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas=C:\Git\delphi-course-projects\untPrincipal.pas</Transaction>
+    <Transaction>2026/07/22 21:14:31.000.184,C:\Users\alves\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.dfm=C:\Git\delphi-course-projects\untPrincipal.dfm</Transaction>
+    <Transaction>2026/07/22 21:14:36.000.568,C:\Users\alves\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1.dproj=C:\Git\delphi-course-projects\Vendas.dproj</Transaction>
     <Transaction>2026/07/26 14:15:46.000.857,=C:\Git\delphi-course-projects\Unit1.pas</Transaction>
-    <Transaction>2026/07/26 14:17:21.000.439,C:\Git\delphi-course-projects\DataModule\uConexao.dfm=C:\Git\delphi-course-projects\Unit1.dfm</Transaction>
-    <Transaction>2026/07/26 14:17:21.000.439,C:\Git\delphi-course-projects\DataModule\uConexao.pas=C:\Git\delphi-course-projects\Unit1.pas</Transaction>
+    <Transaction>2026/07/26 14:17:21.000.439,C:\Git\delphi-course-projects\Unit1.pas=C:\Git\delphi-course-projects\DataModule\uConexao.pas</Transaction>
+    <Transaction>2026/07/26 14:17:21.000.439,C:\Git\delphi-course-projects\Unit1.dfm=C:\Git\delphi-course-projects\DataModule\uConexao.dfm</Transaction>
     <Transaction>2026/08/01 15:22:02.000.154,=C:\Git\delphi-course-projects\Unit1.pas</Transaction>
-    <Transaction>2026/08/01 15:22:49.000.302,C:\Git\delphi-course-projects\Unit1.pas=C:\Git\delphi-course-projects\Heranca\uTelaHeranca.pas</Transaction>
-    <Transaction>2026/08/01 15:22:49.000.302,C:\Git\delphi-course-projects\Unit1.dfm=C:\Git\delphi-course-projects\Heranca\uTelaHeranca.dfm</Transaction>
+    <Transaction>2026/08/01 15:22:49.000.302,C:\Git\delphi-course-projects\Heranca\uTelaHeranca.pas=C:\Git\delphi-course-projects\Unit1.pas</Transaction>
+    <Transaction>2026/08/01 15:22:49.000.302,C:\Git\delphi-course-projects\Heranca\uTelaHeranca.dfm=C:\Git\delphi-course-projects\Unit1.dfm</Transaction>
     <Transaction>2026/08/01 16:49:55.000.684,=C:\Git\delphi-course-projects\Unit1.pas</Transaction>
-    <Transaction>2026/08/01 16:52:09.000.451,C:\Git\delphi-course-projects\Unit1.pas=C:\Git\delphi-course-projects\Cadastros\uCadCategorias.pas</Transaction>
-    <Transaction>2026/08/01 16:52:09.000.451,C:\Git\delphi-course-projects\Unit1.dfm=C:\Git\delphi-course-projects\Cadastros\uCadCategorias.dfm</Transaction>
+    <Transaction>2026/08/01 16:52:09.000.451,C:\Git\delphi-course-projects\Cadastros\uCadCategorias.pas=C:\Git\delphi-course-projects\Unit1.pas</Transaction>
+    <Transaction>2026/08/01 16:52:09.000.451,C:\Git\delphi-course-projects\Cadastros\uCadCategorias.dfm=C:\Git\delphi-course-projects\Unit1.dfm</Transaction>
     <Transaction>2026/08/01 17:14:01.000.293,=C:\Git\delphi-course-projects\Terceiros\Enter.pas</Transaction>
-    <Transaction>2026/08/02 12:58:40.421,=C:\Git\delphi-course-projects\Unit1.pas</Transaction>
-    <Transaction>2026/08/02 12:58:58.587,C:\Git\delphi-course-projects\Heranca\uEnum.pas=C:\Git\delphi-course-projects\Unit1.pas</Transaction>
+    <Transaction>2026/08/02 12:58:40.000.421,=C:\Git\delphi-course-projects\Unit1.pas</Transaction>
+    <Transaction>2026/08/02 12:58:58.000.587,C:\Git\delphi-course-projects\Unit1.pas=C:\Git\delphi-course-projects\Heranca\uEnum.pas</Transaction>
+    <Transaction>2026/08/04 00:24:05.000.084,=C:\Git\delphi-course-projects\Unit1.pas</Transaction>
+    <Transaction>2026/08/04 00:25:14.000.354,C:\Git\delphi-course-projects\Unit1.pas=C:\Git\delphi-course-projects\Classes\cCadCategoria.pas</Transaction>
+    <Transaction>2026/08/04 00:31:33.000.865,C:\Git\delphi-course-projects\Classes\cCadCategoria.pas=C:\Git\delphi-course-projects\Classes\uClassCategoria.pas</Transaction>
+    <Transaction>2026/08/28 20:15:42.926,=C:\Git\delphi-course-projects\Unit1.pas</Transaction>
+    <Transaction>2026/08/28 20:16:16.013,C:\Git\delphi-course-projects\Cadastros\uCadCliente.dfm=C:\Git\delphi-course-projects\Unit1.dfm</Transaction>
+    <Transaction>2026/08/28 20:16:16.013,C:\Git\delphi-course-projects\Cadastros\uCadCliente.pas=C:\Git\delphi-course-projects\Unit1.pas</Transaction>
+    <Transaction>2026/08/28 21:24:28.870,=C:\Git\delphi-course-projects\Unit1.pas</Transaction>
+    <Transaction>2026/08/28 21:25:10.101,C:\Git\delphi-course-projects\Classes\uClassCliente.pas=C:\Git\delphi-course-projects\Unit1.pas</Transaction>
   </Transactions>
 </BorlandProject>
