@@ -180,7 +180,7 @@ begin
   try
     qry.Connection := ConexaoDB;
     qry.SQL.Clear;
-    qry.SQL.Add('SELECT ID, NOME, ENDERECO, CIDADE, BAIRRO, ESTADO, CEP, TELEFONE, EMAIL, DATANASCIMENTO');
+    qry.SQL.Add('SELECT IID, NOME, ENDERECO, CIDADE, BAIRRO, ESTADO, CEP, TELEFONE, EMAIL, DATANASCIMENTO');
     qry.SQL.Add('   FROM CLIENTES');
     qry.SQL.Add(' WHERE ID = (:pClienteID)');
     qry.ParamByName('pClienteID').Value := ID;

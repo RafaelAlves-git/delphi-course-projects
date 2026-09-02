@@ -1,8 +1,9 @@
 object frmPrincipal: TfrmPrincipal
   Left = 0
   Top = 0
+  BorderStyle = bsSingle
   Caption = 'Projeto Vendas'
-  ClientHeight = 529
+  ClientHeight = 524
   ClientWidth = 739
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -11,10 +12,31 @@ object frmPrincipal: TfrmPrincipal
   Font.Name = 'Segoe UI'
   Font.Style = []
   Menu = MenuPrincipal
+  OnClose = FormClose
   OnCreate = FormCreate
   TextHeight = 15
+  object pnBot: TPanel
+    Left = 0
+    Top = 483
+    Width = 739
+    Height = 41
+    Align = alBottom
+    BevelOuter = bvNone
+    Caption = 'Rafael Alves'
+    Color = 3355443
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -12
+    Font.Name = 'Segoe UI'
+    Font.Style = [fsBold]
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 0
+    ExplicitTop = 480
+    ExplicitWidth = 737
+  end
   object MenuPrincipal: TMainMenu
-    Left = 656
+    Left = 648
     Top = 16
     object Cadastro1: TMenuItem
       Caption = 'Cadastro'
@@ -23,6 +45,7 @@ object frmPrincipal: TfrmPrincipal
       end
       object Cliente2: TMenuItem
         Caption = 'Categoria'
+        OnClick = Cliente2Click
       end
       object Produtos1: TMenuItem
         Caption = 'Produtos'

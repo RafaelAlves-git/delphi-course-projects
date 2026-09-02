@@ -71,7 +71,7 @@ begin
   try
     qry.Connection := ConexaoDB;
     qry.SQL.Clear;
-    qry.SQL.Add('UPDATE CLIENTES');
+    qry.SQL.Add('UPDATE CATEGORIAS');
     qry.SQL.Add('    SET NOME = (:pNOME)');
     qry.SQL.Add('        ,ENDERECO = (:pENDERECO)');
     qry.SQL.Add('        ,CIDADE = (:pCIDADE)');
@@ -140,73 +140,13 @@ begin
 end;
 
 function TCliente.Inserir: Boolean;
-var
-  qryInserir: TFDQuery;
 begin
-  qryInserir := TFDQuery.Create(nil);
-  try
-    qryInserir.Connection := ConexaoDB;
-    qryInserir.SQL.Clear;
-    qryInserir.SQL.Add('INSERT INTO CLIENTES (NOME, ENDERECO, CIDADE, BAIRRO, ESTADO, CEP, TELEFONE, EMAIL, DATANASCIMENTO)');
-    qryInserir.SQL.Add('       VALUES (:pNOME, :pENDERECO, :pCIDADE, :pBAIRRO, :pESTADO, :pCEP, :pTELEFONE, :pEMAIL, :pDATANASCIMENTO)');
 
-    qryInserir.ParamByName('pNOME').AsString := Self.F_Nome;
-    qryInserir.ParamByName('pENDERECO').AsString := Self.F_Endereco;
-    qryInserir.ParamByName('pCIDADE').AsString := Self.F_Cidade;
-    qryInserir.ParamByName('pBAIRRO').AsString := Self.F_Bairro;
-    qryInserir.ParamByName('pESTADO').AsString := Self.F_Estado;
-    qryInserir.ParamByName('pCEP').AsString := Self.F_CEP;
-    qryInserir.ParamByName('pTELEFONE').AsString := Self.F_Telefone;
-    qryInserir.ParamByName('pEMAIL').AsString := Self.F_Email;
-    qryInserir.ParamByName('pDATANASCIMENTO').AsDateTime := Self.F_DataNascimento;
-
-    try
-      qryInserir.ExecSQL;
-      Result := True;
-    except
-      Result := False;
-    end;
-  finally
-    if Assigned(qryInserir) then
-      FreeAndNil(qryInserir);
-  end;
 end;
 
 function TCliente.Selecionar(ID: Integer): Boolean;
-var
-  qry: TFDQuery;
 begin
-  qry := TFDQuery.Create(nil);
-  try
-    qry.Connection := ConexaoDB;
-    qry.SQL.Clear;
-    qry.SQL.Add('SELECT ID, NOME, ENDERECO, CIDADE, BAIRRO, ESTADO, CEP, TELEFONE, EMAIL, DATANASCIMENTO');
-    qry.SQL.Add('   FROM CLIENTES');
-    qry.SQL.Add(' WHERE ID = (:pClienteID)');
-    qry.ParamByName('pClienteID').Value := ID;
 
-    try
-      qry.Open();
-
-      Self.F_ID := qry.FieldByName('ID').AsInteger;
-      Self.F_Nome := qry.FieldByName('NOME').AsString;
-      Self.F_Endereco := qry.FieldByName('ENDERECO').AsString;
-      Self.F_Cidade := qry.FieldByName('CIDADE').AsString;
-      Self.F_Bairro := qry.FieldByName('BAIRRO').AsString;
-      Self.F_Estado := qry.FieldByName('ESTADO').AsString;
-      Self.F_CEP := qry.FieldByName('CEP').AsString;
-      Self.F_Telefone := qry.FieldByName('TELEFONE').AsString;
-      Self.F_Email := qry.FieldByName('EMAIL').AsString;
-      Self.F_DataNascimento := qry.FieldByName('DATANASCIMENTO').AsDateTime;
-
-      Result := True;
-    except
-      Result := False;
-    end;
-  finally
-    if Assigned(qry) then
-      FreeAndNil(qry);
-  end;
 end;
 {$endregion}
 

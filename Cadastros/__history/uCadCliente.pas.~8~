@@ -28,7 +28,6 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnNovoClick(Sender: TObject);
-    procedure btnAlterarClick(Sender: TObject);
   private
     { Private declarations }
     oCLiente: TCliente;
@@ -78,29 +77,6 @@ begin
       Result := oCLiente.Atualizar;
 end;
 {$endRegion}
-
-procedure TfrmCadCliente.btnAlterarClick(Sender: TObject);
-begin
-  if oCLiente.Selecionar(qryListagem.FieldByName('ID').AsInteger) then
-    begin
-      edtClienteID.Text := IntToStr(oCLiente.Codigo);
-      edtNome.Text := oCLiente.Nome;
-      edtCEP.Text := oCLiente.CEP;
-      edtEndereco.Text := oCLiente.Endereco ;
-      edtBairro.Text := oCLiente.Bairro;
-      edtCidade.Text := oCLiente.Cidade;
-      edtTelefone.Text := oCLiente.Telefone;
-      edtEmail.Text := oCLiente.Email;
-      edtDataNascimento.Date := oCLiente.DataNascimento;
-    end
-  else
-    begin
-      btnCancelar.Click;
-      Abort;
-    end;
-
-  inherited;
-end;
 
 procedure TfrmCadCliente.btnNovoClick(Sender: TObject);
 begin

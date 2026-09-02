@@ -6,35 +6,34 @@ inherited frmCadCategoria: TfrmCadCategoria
   ExplicitWidth = 951
   ExplicitHeight = 544
   TextHeight = 15
-  inherited Panel1: TPanel
+  inherited pnButtons: TPanel
     Top = 464
     Width = 935
     StyleElements = [seFont, seClient, seBorder]
-    ExplicitTop = 504
-    ExplicitWidth = 847
+    ExplicitTop = 456
+    ExplicitWidth = 933
     inherited dbnNavigator: TDBNavigator
       Hints.Strings = ()
+      StyleElements = [seFont, seClient, seBorder]
     end
     inherited btnFechar: TBitBtn
-      Left = 845
-      ExplicitLeft = 760
-    end
-    inherited btnGravar: TBitBtn
-      ExplicitLeft = 264
+      Left = 844
+      ExplicitLeft = 842
     end
   end
   inherited pgcPrincipal: TPageControl
     Width = 935
     Height = 464
-    ExplicitWidth = 847
-    ExplicitHeight = 504
+    ActivePage = tabManutencao
+    ExplicitWidth = 933
+    ExplicitHeight = 456
     inherited tabListagem: TTabSheet
       ExplicitWidth = 927
       ExplicitHeight = 434
       inherited pnlListagemTopo: TPanel
         Width = 927
         StyleElements = [seFont, seClient, seBorder]
-        ExplicitWidth = 839
+        ExplicitWidth = 925
         inherited lblIndice: TLabel
           StyleElements = [seFont, seClient, seBorder]
         end
@@ -61,7 +60,7 @@ inherited frmCadCategoria: TfrmCadCategoria
     inherited tabManutencao: TTabSheet
       ExplicitWidth = 927
       ExplicitHeight = 434
-      object edtID: TLabeledEdit
+      object edtCategoriaID: TLabeledEdit
         Tag = 1
         Left = 16
         Top = 32
@@ -76,7 +75,7 @@ inherited frmCadCategoria: TfrmCadCategoria
         TabOrder = 0
         Text = ''
       end
-      object edtDescricao: TLabeledEdit
+      object edtCategoriaDescricao: TLabeledEdit
         Tag = 2
         Left = 16
         Top = 80

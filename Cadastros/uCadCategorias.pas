@@ -58,8 +58,6 @@ begin
   else
     if (EstadoDoCadastro = ecAlterar) then
       Result := oCategoria.Atualizar;
-
-
 end;
 
 procedure TfrmCadCategoria.grdListagemDblClick(Sender: TObject);

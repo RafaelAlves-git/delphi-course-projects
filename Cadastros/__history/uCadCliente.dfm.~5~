@@ -2,30 +2,24 @@ inherited frmCadCliente: TfrmCadCliente
   Caption = 'Cadastro de Cliente'
   ClientHeight = 540
   StyleElements = [seFont, seClient, seBorder]
+  ExplicitLeft = 3
+  ExplicitTop = 3
   ExplicitHeight = 579
   TextHeight = 15
   inherited pnButtons: TPanel
     Top = 499
     StyleElements = [seFont, seClient, seBorder]
-    ExplicitTop = 491
-    ExplicitWidth = 989
     inherited dbnNavigator: TDBNavigator
       Hints.Strings = ()
       StyleElements = [seFont, seClient, seBorder]
     end
-    inherited btnFechar: TBitBtn
-      ExplicitLeft = 898
-    end
   end
   inherited pgcPrincipal: TPageControl
     Height = 499
-    ExplicitWidth = 989
-    ExplicitHeight = 491
     inherited tabListagem: TTabSheet
       ExplicitHeight = 469
       inherited pnlListagemTopo: TPanel
         StyleElements = [seFont, seClient, seBorder]
-        ExplicitWidth = 981
         inherited lblIndice: TLabel
           StyleElements = [seFont, seClient, seBorder]
         end
@@ -39,42 +33,31 @@ inherited frmCadCliente: TfrmCadCliente
           item
             Expanded = False
             FieldName = 'ID'
-            Title.Caption = 'C'#243'digo'
-            Width = 50
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'NOME'
-            Title.Caption = 'Nome'
-            Width = 300
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'ENDERECO'
-            Title.Caption = 'Endere'#231'o'
-            Width = 300
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'CIDADE'
-            Title.Caption = 'Cidade'
-            Width = 200
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'BAIRRO'
-            Title.Caption = 'Bairro'
-            Width = 200
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'ESTADO'
-            Title.Caption = 'Estado'
             Visible = True
           end
           item
@@ -85,20 +68,16 @@ inherited frmCadCliente: TfrmCadCliente
           item
             Expanded = False
             FieldName = 'TELEFONE'
-            Title.Caption = 'Telefone'
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'EMAIL'
-            Title.Caption = 'E-Mail'
-            Width = 200
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATANASCIMENTO'
-            Title.Caption = 'Data Nascimento'
             Visible = True
           end>
       end
@@ -147,9 +126,9 @@ inherited frmCadCliente: TfrmCadCliente
         Top = 80
         Width = 430
         Height = 23
-        EditLabel.Width = 38
+        EditLabel.Width = 56
         EditLabel.Height = 15
-        EditLabel.Caption = 'Nome*'
+        EditLabel.Caption = 'Descri'#231#227'o*'
         MaxLength = 100
         TabOrder = 1
         Text = ''
@@ -157,7 +136,7 @@ inherited frmCadCliente: TfrmCadCliente
       object edtCEP: TMaskEdit
         Left = 452
         Top = 80
-        Width = 229
+        Width = 120
         Height = 23
         EditMask = '99.999-999;1;_'
         MaxLength = 10
@@ -179,7 +158,7 @@ inherited frmCadCliente: TfrmCadCliente
       object edtBairro: TLabeledEdit
         Left = 453
         Top = 126
-        Width = 228
+        Width = 430
         Height = 23
         EditLabel.Width = 31
         EditLabel.Height = 15
@@ -203,7 +182,7 @@ inherited frmCadCliente: TfrmCadCliente
       object edtTelefone: TMaskEdit
         Left = 453
         Top = 176
-        Width = 228
+        Width = 117
         Height = 23
         EditMask = '(99) 99999-9999;1;_'
         MaxLength = 15

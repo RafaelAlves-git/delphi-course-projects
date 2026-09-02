@@ -47,20 +47,12 @@ type
   end;
 
 implementation
-
-{$region 'Constructor and Destructor'}
-{$endregion}
-
 { TCliente }
 
-function TCliente.Atualizar: Boolean;
-begin
-
-end;
-
+{$region 'Constructor and Destructor'}
 constructor TCliente.Create(aConexaoDB: TFDConnection);
 begin
-
+  ConexaoDB := aConexaoDB;
 end;
 
 destructor TCliente.Destroy;
@@ -68,10 +60,44 @@ begin
 
   inherited;
 end;
+{$endregion}
 
-function TCliente.Excluir: Boolean;
+{$region 'CRUD'}
+function TCliente.Atualizar: Boolean;
 begin
 
+end;
+
+function TCliente.Excluir: Boolean;
+var
+  qry: TFDQuery;
+begin
+  if MessageDlg('Apagar o Registro: '+ #13+
+                'Código: '+IntToStr(Self.F_ID) + #13+
+                'Nome: '+Self.F_Nome, mtConfirmation,[mbYes,mbNo], 0) = mrNo then
+    begin
+      Result := False;
+      Abort;
+    end;
+
+  qry := TFDQuery.Create(nil);
+  try
+    qry.Connection := ConexaoDB;
+    qry.SQL.Clear;
+    qry.SQL.Add('DELETE FROM CLIENTES');
+    qry.SQL.Add('    WHERE ID = (:pClienteID)');
+    qry.ParamByName('pClienteID').Value := Self.F_ID;
+    try
+      qry.ExecSQL();
+
+      Result := True;
+    except
+      Result := False;
+    end;
+  finally
+    if Assigned(qry) then
+      FreeAndNil(qry);
+  end;
 end;
 
 function TCliente.Inserir: Boolean;
@@ -83,5 +109,11 @@ function TCliente.Selecionar(ID: Integer): Boolean;
 begin
 
 end;
+{$endregion}
+
+
+
+
+
 
 end.

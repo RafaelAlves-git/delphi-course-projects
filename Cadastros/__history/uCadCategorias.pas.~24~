@@ -15,15 +15,16 @@ type
   TfrmCadCategoria = class(TfrmTelaHeranca)
     qryListagemID: TLargeintField;
     qryListagemDESCRICAO: TStringField;
-    edtID: TLabeledEdit;
-    edtDescricao: TLabeledEdit;
+    edtCategoriaID: TLabeledEdit;
+    edtCategoriaDescricao: TLabeledEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure btnGravarClick(Sender: TObject);
+    procedure btnAlterarClick(Sender: TObject);
+    procedure grdListagemDblClick(Sender: TObject);
   private
     { Private declarations }
     oCategoria: TCategoria;
-    function Apagar:Boolean; override;
+    function Excluir:Boolean; override;
     function Gravar(EstadoDoCadastro: TEstadoDoCadastro):Boolean; override;
   public
     { Public declarations }
@@ -37,27 +38,49 @@ implementation
 {$R *.dfm}
 
 {$region 'Override'}
-function TfrmCadCategoria.Apagar: Boolean;
+function TfrmCadCategoria.Excluir: Boolean;
 begin
-  Result := oCategoria.Excluir;
+  if oCategoria.Selecionar(qryListagem.FieldByName('ID').AsInteger) then
+    Result := oCategoria.Excluir();
 end;
 
 function TfrmCadCategoria.Gravar(EstadoDoCadastro: TEstadoDoCadastro): Boolean;
 begin
+  if edtCategoriaID.Text <> EmptyStr then
+    oCategoria.Codigo := StrToInt(edtCategoriaID.Text)
+  else
+    oCategoria.Codigo := 0;
+
+  oCategoria.Descricao := edtCategoriaDescricao.Text;
+
   if (EstadoDoCadastro = ecInserir) then
-    Result := oCategoria.Gravar
+    Result := oCategoria.Inserir
   else
     if (EstadoDoCadastro = ecAlterar) then
       Result := oCategoria.Atualizar;
+end;
 
+procedure TfrmCadCategoria.grdListagemDblClick(Sender: TObject);
+begin
+  inherited;
 
 end;
+
 {$endRegion}
 
-procedure TfrmCadCategoria.btnGravarClick(Sender: TObject);
+procedure TfrmCadCategoria.btnAlterarClick(Sender: TObject);
 begin
-  oCategoria.codigo := 100;
-  oCategoria.descricao := '100';
+  if oCategoria.Selecionar(qryListagem.FieldByName('ID').AsInteger) then
+    begin
+      edtCategoriaID.Text := IntToStr(oCategoria.Codigo);
+      edtCategoriaDescricao.Text := oCategoria.Descricao;
+    end
+  else
+    begin
+      btnCancelar.Click;
+      Abort;
+    end;
+
   inherited;
 
 end;

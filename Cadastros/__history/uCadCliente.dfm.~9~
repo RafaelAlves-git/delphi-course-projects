@@ -19,6 +19,7 @@ inherited frmCadCliente: TfrmCadCliente
   end
   inherited pgcPrincipal: TPageControl
     Height = 499
+    ActivePage = tabManutencao
     ExplicitWidth = 989
     ExplicitHeight = 491
     inherited tabListagem: TTabSheet
@@ -39,42 +40,31 @@ inherited frmCadCliente: TfrmCadCliente
           item
             Expanded = False
             FieldName = 'ID'
-            Title.Caption = 'C'#243'digo'
-            Width = 50
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'NOME'
-            Title.Caption = 'Nome'
-            Width = 300
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'ENDERECO'
-            Title.Caption = 'Endere'#231'o'
-            Width = 300
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'CIDADE'
-            Title.Caption = 'Cidade'
-            Width = 200
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'BAIRRO'
-            Title.Caption = 'Bairro'
-            Width = 200
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'ESTADO'
-            Title.Caption = 'Estado'
             Visible = True
           end
           item
@@ -85,20 +75,16 @@ inherited frmCadCliente: TfrmCadCliente
           item
             Expanded = False
             FieldName = 'TELEFONE'
-            Title.Caption = 'Telefone'
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'EMAIL'
-            Title.Caption = 'E-Mail'
-            Width = 200
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'DATANASCIMENTO'
-            Title.Caption = 'Data Nascimento'
             Visible = True
           end>
       end

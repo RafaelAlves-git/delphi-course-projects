@@ -33,7 +33,7 @@ inherited frmCadCategoria: TfrmCadCategoria
       inherited pnlListagemTopo: TPanel
         Width = 927
         StyleElements = [seFont, seClient, seBorder]
-        ExplicitWidth = 925
+        ExplicitWidth = 927
         inherited lblIndice: TLabel
           StyleElements = [seFont, seClient, seBorder]
         end

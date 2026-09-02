@@ -32,7 +32,7 @@ object frmPrincipal: TfrmPrincipal
     ParentBackground = False
     ParentFont = False
     TabOrder = 0
-    ExplicitTop = 480
+    ExplicitTop = 475
     ExplicitWidth = 737
   end
   object MenuPrincipal: TMainMenu
@@ -42,6 +42,7 @@ object frmPrincipal: TfrmPrincipal
       Caption = 'Cadastro'
       object Cliente1: TMenuItem
         Caption = 'Cliente'
+        OnClick = Cliente1Click
       end
       object Cliente2: TMenuItem
         Caption = 'Categoria'

@@ -25,7 +25,6 @@ type
     procedure FormCreate(Sender: TObject);
     procedure Cliente2Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure Cliente1Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -41,14 +40,7 @@ implementation
 
 {$R *.dfm}
 
-uses uConexao, uCadCategorias, uCadCliente;
-
-procedure TfrmPrincipal.Cliente1Click(Sender: TObject);
-begin
-  frmCadCliente := TfrmCadCliente.Create(Self);
-  frmCadCliente.ShowModal;
-  frmCadCliente.Release;
-end;
+uses uConexao, uCadCategorias;
 
 procedure TfrmPrincipal.Cliente2Click(Sender: TObject);
 begin
