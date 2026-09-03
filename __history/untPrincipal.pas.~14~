@@ -22,7 +22,7 @@ type
     Produto1: TMenuItem;
     Vendas2: TMenuItem;
     pnBot: TPanel;
-    Panel1: TPanel;
+    Image1: TImage;
     procedure Sair1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Cliente2Click(Sender: TObject);

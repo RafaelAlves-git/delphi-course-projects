@@ -4,8 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls, Enter,
-  Vcl.Imaging.jpeg;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls, Enter;
 
 type
   TfrmPrincipal = class(TForm)
@@ -22,7 +21,6 @@ type
     Produto1: TMenuItem;
     Vendas2: TMenuItem;
     pnBot: TPanel;
-    Panel1: TPanel;
     procedure Sair1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Cliente2Click(Sender: TObject);

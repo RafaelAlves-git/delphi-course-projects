@@ -3,8 +3,8 @@ object frmPrincipal: TfrmPrincipal
   Top = 0
   BorderStyle = bsSingle
   Caption = 'Projeto Vendas'
-  ClientHeight = 524
-  ClientWidth = 739
+  ClientHeight = 534
+  ClientWidth = 873
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,8 +17,8 @@ object frmPrincipal: TfrmPrincipal
   TextHeight = 15
   object pnBot: TPanel
     Left = 0
-    Top = 483
-    Width = 739
+    Top = 493
+    Width = 873
     Height = 41
     Align = alBottom
     BevelOuter = bvNone
@@ -34,6 +34,21 @@ object frmPrincipal: TfrmPrincipal
     TabOrder = 0
     ExplicitTop = 475
     ExplicitWidth = 737
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 873
+    Height = 493
+    Align = alClient
+    BevelOuter = bvNone
+    Color = 3816514
+    ParentBackground = False
+    TabOrder = 1
+    ExplicitLeft = 232
+    ExplicitTop = 88
+    ExplicitWidth = 185
+    ExplicitHeight = 41
   end
   object MenuPrincipal: TMainMenu
     Left = 648
