@@ -1,0 +1,23 @@
+# Delphi / RAD Studio temporary & compiled files
+__history/
+**/__history/
+Win32/
+Win64/
+*.dcu
+*.exe
+*.dll
+*.bpl
+*.dcp
+*.o
+*.obj
+*.stat
+*.identcache
+*.local
+*.tvsconfig
+*.dsk
+*.~*
+
+# OS / System generated files
+[Tt]humbs.db
+[Dd]esktop.ini
+.DS_Store
