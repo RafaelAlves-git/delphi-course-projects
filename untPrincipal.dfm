@@ -32,8 +32,8 @@ object frmPrincipal: TfrmPrincipal
     ParentBackground = False
     ParentFont = False
     TabOrder = 0
-    ExplicitTop = 475
-    ExplicitWidth = 737
+    ExplicitTop = 485
+    ExplicitWidth = 871
   end
   object Panel1: TPanel
     Left = 0
@@ -45,43 +45,42 @@ object frmPrincipal: TfrmPrincipal
     Color = 3816514
     ParentBackground = False
     TabOrder = 1
-    ExplicitLeft = 232
-    ExplicitTop = 88
-    ExplicitWidth = 185
-    ExplicitHeight = 41
+    ExplicitWidth = 871
+    ExplicitHeight = 485
   end
   object MenuPrincipal: TMainMenu
     Left = 648
     Top = 16
     object Cadastro1: TMenuItem
       Caption = 'Cadastro'
-      object Cliente1: TMenuItem
+      object Cliente: TMenuItem
         Caption = 'Cliente'
-        OnClick = Cliente1Click
+        OnClick = ClienteClick
       end
-      object Cliente2: TMenuItem
+      object Categoria: TMenuItem
         Caption = 'Categoria'
-        OnClick = Cliente2Click
+        OnClick = CategoriaClick
       end
-      object Produtos1: TMenuItem
+      object Produtos: TMenuItem
         Caption = 'Produtos'
+        OnClick = ProdutosClick
       end
     end
     object Movimentao1: TMenuItem
       Caption = 'Movimenta'#231#227'o'
-      object Vendas1: TMenuItem
+      object Vendas: TMenuItem
         Caption = 'Vendas'
       end
     end
     object Relatrios1: TMenuItem
       Caption = 'Relat'#243'rios'
-      object Cliente3: TMenuItem
+      object RelatorioCliente: TMenuItem
         Caption = 'Cliente'
       end
-      object Produto1: TMenuItem
+      object RelatorioProduto: TMenuItem
         Caption = 'Produto'
       end
-      object Vendas2: TMenuItem
+      object RelatorioVendas: TMenuItem
         Caption = 'Vendas'
       end
     end

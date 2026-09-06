@@ -64,11 +64,11 @@ begin
     qry.Connection := ConexaoDB;
     qry.SQL.Clear;
     qry.SQL.Add('UPDATE PRODUTOS');
-    qry.SQL.Add('    SET NOME = :pNome,');
-    qry.SQL.Add('        DESCRICAO = :pDescricao,');
-    qry.SQL.Add('        VALOR = :pValor,');
-    qry.SQL.Add('        QUANTIDADE = :pQuantidade,');
-    qry.SQL.Add('        CATEGORIA_ID = :pCategoriaID');
+    qry.SQL.Add('    SET NOME = (:pNome)');
+    qry.SQL.Add('    SET DESCRICAO = (:pDescricao)');
+    qry.SQL.Add('    SET VALOR = (:pValor)');
+    qry.SQL.Add('    SET QUANTIDADE = (:pQuantidade)');
+    qry.SQL.Add('    SET CATEGORIA_ID = (:pCategoriaID)');
     qry.SQL.Add('    WHERE ID = (:pProdutoID)');
 
     qry.ParamByName('pNome').Value := Self.F_Nome;
@@ -160,8 +160,7 @@ begin
     qry.Connection := ConexaoDB;
     qry.SQL.Clear;
     qry.SQL.Add('SELECT ID, NOME, DESCRICAO, VALOR, QUANTIDADE, CATEGORIA_ID');
-    qry.SQL.Add('  FROM PRODUTOS');
-    qry.SQL.Add(' WHERE ID = (:pProdutoID)');
+    qry.SQL.Add('    WHERE ID = (:pProdutoID)');
     qry.ParamByName('pProdutoID').Value := ID;
     try
       qry.Open();
@@ -172,7 +171,6 @@ begin
       Self.F_Valor := qry.FieldByName('VALOR').AsFloat;
       Self.F_Quantidade := qry.FieldByName('QUANTIDADE').AsFloat;
       Self.F_CategoriaID := qry.FieldByName('CATEGORIA_ID').AsInteger;
-
       Result := True;
     except
       Result := False;

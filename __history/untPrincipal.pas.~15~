@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls, Enter,
-  Vcl.Imaging.jpeg, uCadProduto;
+  Vcl.Imaging.jpeg;
 
 type
   TfrmPrincipal = class(TForm)
@@ -14,21 +14,20 @@ type
     Movimentao1: TMenuItem;
     Relatrios1: TMenuItem;
     Sair1: TMenuItem;
-    Cliente: TMenuItem;
-    Categoria: TMenuItem;
-    Produtos: TMenuItem;
-    Vendas: TMenuItem;
-    RelatorioCliente: TMenuItem;
-    RelatorioProduto: TMenuItem;
-    RelatorioVendas: TMenuItem;
+    Cliente1: TMenuItem;
+    Cliente2: TMenuItem;
+    Produtos1: TMenuItem;
+    Vendas1: TMenuItem;
+    Cliente3: TMenuItem;
+    Produto1: TMenuItem;
+    Vendas2: TMenuItem;
     pnBot: TPanel;
     Panel1: TPanel;
     procedure Sair1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure CategoriaClick(Sender: TObject);
+    procedure Cliente2Click(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure ClienteClick(Sender: TObject);
-    procedure ProdutosClick(Sender: TObject);
+    procedure Cliente1Click(Sender: TObject);
 
   private
     { Private declarations }
@@ -46,28 +45,19 @@ implementation
 
 uses uConexao, uCadCategorias, uCadCliente;
 
-{@region 'Menu Principal'}
-procedure TfrmPrincipal.ClienteClick(Sender: TObject);
+procedure TfrmPrincipal.Cliente1Click(Sender: TObject);
 begin
   frmCadCliente := TfrmCadCliente.Create(Self);
   frmCadCliente.ShowModal;
   frmCadCliente.Release;
 end;
 
-procedure TfrmPrincipal.CategoriaClick(Sender: TObject);
+procedure TfrmPrincipal.Cliente2Click(Sender: TObject);
 begin
   frmCadCategoria := TfrmCadCategoria.Create(Self);
   frmCadCategoria.ShowModal;
   frmCadCategoria.Release;
 end;
-
-procedure TfrmPrincipal.ProdutosClick(Sender: TObject);
-begin
-  frmCadProduto := TfrmCadProduto.Create(Self);
-  frmCadProduto.ShowModal;
-  frmCadProduto.Release;
-end;
-{@endRegion}
 
 procedure TfrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
 begin

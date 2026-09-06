@@ -266,6 +266,8 @@ object frmTelaHeranca: TfrmTelaHeranca
     ActivePage = tabListagem
     Align = alClient
     TabOrder = 1
+    ExplicitLeft = -1
+    ExplicitTop = -5
     object tabListagem: TTabSheet
       Caption = 'Listagem'
       ImageIndex = 1

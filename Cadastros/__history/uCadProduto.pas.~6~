@@ -28,11 +28,6 @@ type
     lbCategoria: TLabel;
     qryCategoriaID: TLargeintField;
     qryCategoriaDESCRICAO: TStringField;
-    procedure btnAlterarClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure btnNovoClick(Sender: TObject);
-    procedure FormShow(Sender: TObject);
   private
     oProduto: TProduto;
     function Excluir:Boolean; override;
@@ -47,6 +42,7 @@ var
 implementation
 
 {$R *.dfm}
+
 
 { TfrmCadProduto }
 {$region 'Override'}
@@ -76,53 +72,7 @@ begin
   else
     if (EstadoDoCadastro = ecAlterar) then
       Result := oProduto.Atualizar;
+
 end;
 {$endregion}
-procedure TfrmCadProduto.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  inherited;
-  qryCategoria.Close;
-  if Assigned(oProduto) then
-    FreeAndNil(oProduto);
-end;
-
-procedure TfrmCadProduto.FormCreate(Sender: TObject);
-begin
-  inherited;
-  oProduto := TProduto.Create(dtmConexao.ConexaoDB);
-  IndiceAtual := 'NOME';
-end;
-
-procedure TfrmCadProduto.FormShow(Sender: TObject);
-begin
-  inherited;
-  qryCategoria.Open();
-end;
-
-procedure TfrmCadProduto.btnNovoClick(Sender: TObject);
-begin
-  inherited;
-  edtNome.SetFocus;
-end;
-
-procedure TfrmCadProduto.btnAlterarClick(Sender: TObject);
-begin
-  if oProduto.Selecionar(qryListagem.FieldByName('ID').AsInteger) then
-    begin
-      edtProdutoID.Text := IntToStr(oProduto.Codigo);
-      edtNome.Text := oProduto.Nome;
-      edtDescricao.Text := oProduto.Descricao;
-      edtValor.Value := oProduto.Valor;
-      edtQuantidade.Value := oProduto.Quantidade;
-      lkpCategoria.KeyValue := oProduto.CategoriaID;
-    end
-  else
-    begin
-      btnCancelar.Click;
-      Abort;
-    end;
-
-  inherited;
-end;
-
 end.

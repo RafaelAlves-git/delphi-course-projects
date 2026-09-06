@@ -16,6 +16,8 @@ inherited frmCadProduto: TfrmCadProduto
   end
   inherited pgcPrincipal: TPageControl
     ActivePage = tabManutencao
+    ExplicitLeft = 0
+    ExplicitTop = 0
     ExplicitWidth = 989
     ExplicitHeight = 615
     inherited tabListagem: TTabSheet
@@ -94,7 +96,7 @@ inherited frmCadProduto: TfrmCadProduto
         Height = 15
         Caption = 'Categoria'
       end
-      object edtProdutoID: TLabeledEdit
+      object edtID: TLabeledEdit
         Tag = 1
         Left = 16
         Top = 32
@@ -109,7 +111,7 @@ inherited frmCadProduto: TfrmCadProduto
         TabOrder = 0
         Text = ''
       end
-      object edtNome: TLabeledEdit
+      object edtCategoriaDescricao: TLabeledEdit
         Tag = 2
         Left = 16
         Top = 80
@@ -127,6 +129,8 @@ inherited frmCadProduto: TfrmCadProduto
         Top = 136
         Width = 585
         Height = 89
+        Lines.Strings = (
+          'edtDescricao')
         MaxLength = 255
         TabOrder = 3
       end
@@ -158,6 +162,7 @@ inherited frmCadProduto: TfrmCadProduto
     end
   end
   inherited qryListagem: TFDQuery
+    Active = True
     SQL.Strings = (
       'SELECT '
       'P.ID, '
@@ -172,6 +177,7 @@ inherited frmCadProduto: TfrmCadProduto
       'ON C.ID = P.CATEGORIA_ID')
   end
   object qryCategoria: TFDQuery
+    Active = True
     Connection = dtmConexao.ConexaoDB
     SQL.Strings = (
       'SELECT ID, DESCRICAO'

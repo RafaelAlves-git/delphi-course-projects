@@ -9,7 +9,7 @@ uses
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
-  uEnum;
+  uEnum, RxToolEdit, RxCurrEdit;
 
 type
   TfrmTelaHeranca = class(TForm)
@@ -297,7 +297,17 @@ begin
     if (Components[i] is TLabeledEdit) then
       TLabeledEdit(Components[i]).Text := EmptyStr
     else if (Components[i] is TEdit) then
-      TEdit(Components[i]).Text := EmptyStr;
+      TEdit(Components[i]).Text := EmptyStr
+    else if (Components[i] is TMemo) then
+      TMemo(Components[i]).Text := EmptyStr
+    else if (Components[i] is TDBLookupComboBox) then
+      TDBLookupComboBox(Components[i]).KeyValue := Null
+    else if (Components[i] is TCurrencyEdit) then
+      TCurrencyEdit(Components[i]).Value := 0
+    else if (Components[i] is TDateEdit) then
+      TDateEdit(Components[i]).Date := 0
+    else if (Components[i] is TMaskEdit) then
+      TMaskEdit(Components[i]).Text := EmptyStr;
   end;
 end;
 

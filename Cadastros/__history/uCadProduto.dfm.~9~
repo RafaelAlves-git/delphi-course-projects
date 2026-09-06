@@ -16,6 +16,8 @@ inherited frmCadProduto: TfrmCadProduto
   end
   inherited pgcPrincipal: TPageControl
     ActivePage = tabManutencao
+    ExplicitLeft = 0
+    ExplicitTop = 0
     ExplicitWidth = 989
     ExplicitHeight = 615
     inherited tabListagem: TTabSheet
@@ -127,6 +129,8 @@ inherited frmCadProduto: TfrmCadProduto
         Top = 136
         Width = 585
         Height = 89
+        Lines.Strings = (
+          'edtDescricao')
         MaxLength = 255
         TabOrder = 3
       end
@@ -158,6 +162,7 @@ inherited frmCadProduto: TfrmCadProduto
     end
   end
   inherited qryListagem: TFDQuery
+    Active = True
     SQL.Strings = (
       'SELECT '
       'P.ID, '

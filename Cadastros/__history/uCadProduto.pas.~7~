@@ -29,10 +29,6 @@ type
     qryCategoriaID: TLargeintField;
     qryCategoriaDESCRICAO: TStringField;
     procedure btnAlterarClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure btnNovoClick(Sender: TObject);
-    procedure FormShow(Sender: TObject);
   private
     oProduto: TProduto;
     function Excluir:Boolean; override;
@@ -50,6 +46,7 @@ implementation
 
 { TfrmCadProduto }
 {$region 'Override'}
+
 function TfrmCadProduto.Excluir: Boolean;
 begin
   if oProduto.Selecionar(qryListagem.FieldByName('ID').AsInteger) then
@@ -78,32 +75,6 @@ begin
       Result := oProduto.Atualizar;
 end;
 {$endregion}
-procedure TfrmCadProduto.FormClose(Sender: TObject; var Action: TCloseAction);
-begin
-  inherited;
-  qryCategoria.Close;
-  if Assigned(oProduto) then
-    FreeAndNil(oProduto);
-end;
-
-procedure TfrmCadProduto.FormCreate(Sender: TObject);
-begin
-  inherited;
-  oProduto := TProduto.Create(dtmConexao.ConexaoDB);
-  IndiceAtual := 'NOME';
-end;
-
-procedure TfrmCadProduto.FormShow(Sender: TObject);
-begin
-  inherited;
-  qryCategoria.Open();
-end;
-
-procedure TfrmCadProduto.btnNovoClick(Sender: TObject);
-begin
-  inherited;
-  edtNome.SetFocus;
-end;
 
 procedure TfrmCadProduto.btnAlterarClick(Sender: TObject);
 begin
