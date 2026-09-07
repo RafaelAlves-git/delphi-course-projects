@@ -44,7 +44,7 @@ implementation
 
 {$R *.dfm}
 
-uses uConexao, uCadCategorias, uCadCliente;
+uses uConexao, uCadCategorias, uCadCliente, uFrmAtualizaDB;
 
 {@region 'Menu Principal'}
 procedure TfrmPrincipal.ClienteClick(Sender: TObject);
@@ -77,11 +77,21 @@ end;
 
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
 begin
-  dtmConexao := TdtmConexao.Create(Self);
+  try
+    frmAtualizaDB := TfrmAtualizaDB.Create(Self);
+    frmAtualizaDB.Show;
+    frmAtualizaDB.Refresh;
 
-  TeclaEnter := TMREnter.Create(Self);
-  TeclaEnter.FocusEnabled := True;
-  TeclaEnter.FocusColor := clInfoBk;
+    dtmConexao := TdtmConexao.Create(Self);
+
+    TeclaEnter := TMREnter.Create(Self);
+    TeclaEnter.FocusEnabled := True;
+    TeclaEnter.FocusColor := clInfoBk;
+
+    frmAtualizaDB.AtualizacaoDB(Self);
+  finally
+    frmAtualizaDB.Free;
+  end;
 end;
 
 procedure TfrmPrincipal.Sair1Click(Sender: TObject);
