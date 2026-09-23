@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, Vcl.ExtCtrls, Enter,
-  Vcl.Imaging.jpeg, uCadProduto;
+  Vcl.Imaging.jpeg;
 
 type
   TfrmPrincipal = class(TForm)
@@ -29,6 +29,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure ClienteClick(Sender: TObject);
     procedure ProdutosClick(Sender: TObject);
+    procedure VendasClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -44,7 +45,8 @@ implementation
 
 {$R *.dfm}
 
-uses uConexao, uCadCategorias, uCadCliente, uFrmAtualizaDB;
+uses uConexao, uCadCategorias, uCadCliente, uFrmAtualizaDB, uCadProduto,
+  uProVenda;
 
 {@region 'Menu Principal'}
 procedure TfrmPrincipal.ClienteClick(Sender: TObject);
@@ -66,6 +68,13 @@ begin
   frmCadProduto := TfrmCadProduto.Create(Self);
   frmCadProduto.ShowModal;
   frmCadProduto.Release;
+end;
+
+procedure TfrmPrincipal.VendasClick(Sender: TObject);
+begin
+  frmProVenda := TfrmProVenda.Create(Self);
+  frmProVenda.ShowModal;
+  frmProVenda.Release;
 end;
 {@endRegion}
 
@@ -98,5 +107,7 @@ procedure TfrmPrincipal.Sair1Click(Sender: TObject);
 begin
   Application.Terminate;
 end;
+
+
 
 end.

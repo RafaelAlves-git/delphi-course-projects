@@ -14,7 +14,9 @@ uses
   uCadProduto in 'Cadastros\uCadProduto.pas' {frmCadProduto},
   uClassProduto in 'Classes\uClassProduto.pas',
   uFrmAtualizaDB in 'DataModule\uFrmAtualizaDB.pas' {frmAtualizaDB},
-  dmVenda in 'DataModule\dmVenda.pas' {dmVendas: TDataModule};
+  dmVenda in 'DataModule\dmVenda.pas' {dmVendas: TDataModule},
+  uProVenda in 'Processo\uProVenda.pas' {frmProVenda},
+  uClassProVenda in 'Classes\uClassProVenda.pas';
 
 {$R *.res}
 
@@ -22,6 +24,5 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmPrincipal, frmPrincipal);
-  Application.CreateForm(TdmVendas, dmVendas);
   Application.Run;
 end.

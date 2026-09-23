@@ -40,7 +40,7 @@ procedure TfrmAtualizaDB.AtualizacaoDB(Sender: TObject);
   begin
     CheckBox.Checked := True;
     Application.ProcessMessages;
-    Sleep(300);
+    Sleep(50);
   end;
 begin
   MarcaPasso(chkConexaoDB);
@@ -65,7 +65,7 @@ begin
     uConexao.dtmConexao.ConexaoDB.Commit;
     pnBot.Caption := ('Atualização do banco de dados concluída com sucesso!');
     Application.ProcessMessages;
-    Sleep(500);
+    Sleep(100);
   except
     on E: Exception do
     begin

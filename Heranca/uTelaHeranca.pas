@@ -43,6 +43,8 @@ type
     procedure grdListagemTitleClick(Column: TColumn);
     procedure mskPesquisarChange(Sender: TObject);
     procedure grdListagemDblClick(Sender: TObject);
+    procedure grdListagemKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
     procedure ControlarBotoes(Novo, Alterar, Cancelar, Gravar, Apagar: TBitBtn;
@@ -59,6 +61,7 @@ type
     EstadoDoCadastro: TEstadoDoCadastro;
     function Excluir:Boolean; virtual;
     function Gravar(EstadoDoCadastro: TEstadoDoCadastro):Boolean; virtual;
+    procedure BloqueiaCTRL_DEL_DBGrid(var Key: Word; Shift: TShiftState);
   end;
 
 var
@@ -74,6 +77,19 @@ uses uConexao;
 // TAG 1 - Chave primaria
 // TAG 2 - Campo Obrigatorio
 {$endRegion}
+
+procedure TfrmTelaHeranca.BloqueiaCTRL_DEL_DBGrid(var Key: Word;
+  Shift: TShiftState);
+begin
+  if (Shift = [ssCtrl]) and (Key= 46) then
+    Key := 0;
+end;
+
+procedure TfrmTelaHeranca.grdListagemKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  BloqueiaCTRL_DEL_DBGrid(Key, Shift);
+end;
 
 procedure TfrmTelaHeranca.btnAlterarClick(Sender: TObject);
 begin
