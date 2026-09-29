@@ -24,7 +24,7 @@ type
       destructor  Destroy; override;
       function Inserir: Boolean;
       function Atualizar: Boolean;
-      function Excluir(ID: Integer): Boolean;
+      function Excluir(): Boolean;
       function Selecionar(ID: Integer): Boolean;
     published
       property VendaID: Integer read F_VendaID write F_VendaID;
@@ -83,7 +83,7 @@ begin
   end;
 end;
 
-function TVenda.Excluir(ID: Integer): Boolean;
+function TVenda.Excluir(): Boolean;
 var
   qry: TFDQuery;
 begin
@@ -101,14 +101,14 @@ begin
     qry.SQL.Clear;
     qry.SQL.Add('DELETE FROM VENDAS_ITENS');
     qry.SQL.Add('    WHERE VENDA_ID = (:pVendaID)');
-    qry.ParamByName('pVendaID').Value := ID;
+    qry.ParamByName('pVendaID').Value := F_VendaID;
     try
       qry.ExecSQL();
 
       qry.SQL.Clear;
       qry.SQL.Add('DELETE FROM VENDAS');
       qry.SQL.Add('    WHERE ID = (:pVendaID)');
-      qry.ParamByName('pVendaID').Value := ID;
+      qry.ParamByName('pVendaID').Value := F_VendaID;
       qry.ExecSQL();
 
       ConexaoDB.Commit;

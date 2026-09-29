@@ -4,15 +4,27 @@ inherited frmProVenda: TfrmProVenda
   TextHeight = 15
   inherited pnButtons: TPanel
     StyleElements = [seFont, seClient, seBorder]
+    ExplicitTop = 615
+    ExplicitWidth = 989
     inherited dbnNavigator: TDBNavigator
       Hints.Strings = ()
       StyleElements = [seFont, seClient, seBorder]
     end
+    inherited btnFechar: TBitBtn
+      ExplicitLeft = 898
+    end
+    inherited btnGravar: TBitBtn
+      ExplicitLeft = 265
+    end
   end
   inherited pgcPrincipal: TPageControl
+    ActivePage = tabManutencao
+    ExplicitWidth = 989
+    ExplicitHeight = 615
     inherited tabListagem: TTabSheet
       inherited pnlListagemTopo: TPanel
         StyleElements = [seFont, seClient, seBorder]
+        ExplicitWidth = 981
         inherited lblIndice: TLabel
           StyleElements = [seFont, seClient, seBorder]
         end
@@ -109,8 +121,6 @@ inherited frmProVenda: TfrmProVenda
         Height = 521
         Align = alBottom
         TabOrder = 3
-        ExplicitTop = 64
-        ExplicitWidth = 981
         object Panel2: TPanel
           Left = 1
           Top = 1
@@ -118,7 +128,6 @@ inherited frmProVenda: TfrmProVenda
           Height = 74
           Align = alTop
           TabOrder = 0
-          ExplicitWidth = 979
           object lbProduto: TLabel
             Left = 15
             Top = 14
@@ -156,6 +165,7 @@ inherited frmProVenda: TfrmProVenda
             ListField = 'NOME'
             ListSource = dmVendas.dsProdutos
             TabOrder = 0
+            OnExit = lkpProdutoExit
           end
           object edtValorUnitario: TCurrencyEdit
             Left = 382
@@ -184,6 +194,8 @@ inherited frmProVenda: TfrmProVenda
             ParentColor = True
             ParentFont = False
             TabOrder = 2
+            OnEnter = edtQuantidadeEnter
+            OnExit = edtQuantidadeExit
           end
           object edtTotalProduto: TCurrencyEdit
             Left = 636
@@ -201,7 +213,7 @@ inherited frmProVenda: TfrmProVenda
             ReadOnly = True
             TabOrder = 4
           end
-          object btnAdicionar: TBitBtn
+          object btnAdicionarItem: TBitBtn
             AlignWithMargins = True
             Left = 771
             Top = 4
@@ -237,9 +249,9 @@ inherited frmProVenda: TfrmProVenda
               17BF6F17FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
               00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
             TabOrder = 3
-            ExplicitLeft = 769
+            OnClick = btnAdicionarItemClick
           end
-          object btnRemover: TBitBtn
+          object btnRemoverItem: TBitBtn
             AlignWithMargins = True
             Left = 877
             Top = 4
@@ -276,7 +288,7 @@ inherited frmProVenda: TfrmProVenda
               00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
             TabOrder = 5
             TabStop = False
-            ExplicitLeft = 875
+            OnClick = btnRemoverItemClick
           end
         end
         object Panel3: TPanel
@@ -286,8 +298,7 @@ inherited frmProVenda: TfrmProVenda
           Height = 397
           Align = alClient
           TabOrder = 1
-          ExplicitWidth = 979
-          object DBGrid1: TDBGrid
+          object gridItensVenda: TDBGrid
             Left = 1
             Top = 1
             Width = 979
@@ -301,7 +312,8 @@ inherited frmProVenda: TfrmProVenda
             TitleFont.Height = -12
             TitleFont.Name = 'Segoe UI'
             TitleFont.Style = []
-            OnKeyDown = DBGrid1KeyDown
+            OnDblClick = gridItensVendaDblClick
+            OnKeyDown = gridItensVendaKeyDown
             Columns = <
               item
                 Expanded = False
@@ -345,7 +357,6 @@ inherited frmProVenda: TfrmProVenda
           Height = 48
           Align = alBottom
           TabOrder = 2
-          ExplicitWidth = 979
           object Label1: TLabel
             Left = 755
             Top = 16
