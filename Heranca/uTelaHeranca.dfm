@@ -182,6 +182,8 @@ object frmTelaHeranca: TfrmTelaHeranca
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
       TabOrder = 4
       OnClick = btnGravarClick
+      ExplicitLeft = 265
+      ExplicitTop = 2
     end
     object btnCancelar: TBitBtn
       Left = 181

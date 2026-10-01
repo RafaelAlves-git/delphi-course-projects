@@ -9,7 +9,7 @@ uses
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf,
   FireDAC.Phys.Intf, FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async,
   FireDAC.Phys, FireDAC.Phys.FB, FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait,
-  FireDAC.Comp.Client, FireDAC.Comp.UI, FireDAC.Phys.IBBase;
+  FireDAC.Comp.Client, FireDAC.Comp.UI, FireDAC.Phys.IBBase, Datasnap.DBClient;
 
 type
   TVenda = Class
@@ -22,10 +22,11 @@ type
     public
       constructor Create(aConexaoDB: TFDConnection);
       destructor  Destroy; override;
-      function Inserir: Boolean;
+      function Inserir(cds: TClientDataSet): Boolean;
       function Atualizar: Boolean;
       function Excluir(): Boolean;
       function Selecionar(ID: Integer): Boolean;
+      function InserirItens(cds: TClientDataSet; IdVenda: Integer): Boolean;
     published
       property VendaID: Integer read F_VendaID write F_VendaID;
       property ClienteID: Integer read F_ClienteID write F_ClienteID;
@@ -123,7 +124,7 @@ begin
   end;
 end;
 
-function TVenda.Inserir: Boolean;
+function TVenda.Inserir(cds: TClientDataSet): Boolean;
 var
   qry: TFDQuery;
   IdVendaGerado: Integer;
@@ -143,16 +144,58 @@ begin
     try
       qry.ExecSQL;
 
+      // Recuperar o ID Gerado no Insert
       qry.SQL.Clear;
-      qry.SQL.Add('SELECT SCOPE_IDENTITY() AS ID');
+      qry.SQL.Add('SELECT MAX(ID) AS ID FROM VENDAS');
       qry.Open();
 
       IdVendaGerado := qry.FieldByName('ID').AsInteger;
+
+      // Gravar na Tabela de VendasItens
+      cds.First;
+      while not cds.Eof  do
+      begin
+        InserirItens(cds, IdVendaGerado);
+        cds.Next;
+      end;
 
       ConexaoDB.Commit;
       Result := True;
     except
       ConexaoDB.Rollback;
+      Result := False;
+    end;
+  finally
+    if Assigned(qry) then
+      FreeAndNil(qry);
+  end;
+end;
+
+function TVenda.InserirItens(cds: TClientDataSet; IdVenda: Integer): Boolean;
+var
+  qry: TFDQuery;
+begin
+  qry := TFDQuery.Create(nil);
+  try
+    ConexaoDB.StartTransaction;
+    qry.Connection := ConexaoDB;
+
+    qry.SQL.Clear;
+    qry.SQL.Add('INSERT INTO VENDAS_ITENS');
+    qry.SQL.Add('          (VENDA_ID, PRODUTO_ID, VALOR_UNITARIO, QUANTIDADE, VALOR_TOTAL)');
+    qry.SQL.Add('   VALUES (:pVENDA_ID, :pPRODUTO_ID, :pVALOR_UNITARIO, :pQUANTIDADE, :pVALOR_TOTAL)');
+
+    qry.ParamByName('pVENDA_ID').Value := IdVenda;
+    qry.ParamByName('pPRODUTO_ID').Value := cds.FieldByName('ProdutoId').AsInteger;
+    qry.ParamByName('pVALOR_UNITARIO').Value := cds.FieldByName('ValorUnitario').AsFloat;
+    qry.ParamByName('pQUANTIDADE').Value := cds.FieldByName('Quantidade').AsFloat;
+    qry.ParamByName('pVALOR_TOTAL').Value := cds.FieldByName('ValorTotalProduto').AsFloat;
+    try
+      qry.ExecSQL;
+
+      ConexaoDB.Commit;
+      Result := True;
+    except
       Result := False;
     end;
   finally

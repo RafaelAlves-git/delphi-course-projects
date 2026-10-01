@@ -9,8 +9,8 @@ uses
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Mask, Vcl.ComCtrls, Vcl.Buttons,
-  Vcl.DBCtrls, Vcl.ExtCtrls, dmVenda, uConexao, RxCurrEdit, RxToolEdit,
-  uClassProVenda, uEnum;
+  Vcl.DBCtrls, Vcl.ExtCtrls, uVendas, uConexao, RxCurrEdit, RxToolEdit,
+  uClassProVenda, uEnum, Datasnap.DBClient;
 
 type
   TfrmProVenda = class(TfrmTelaHeranca)
@@ -91,7 +91,7 @@ begin
   oVenda.TotalVenda := edtValorTotal.Value;
 
   if (EstadoDoCadastro = ecInserir) then
-    Result := oVenda.Inserir
+    Result := oVenda.Inserir(dmVendas.cdsItensVenda)
   else
     if (EstadoDoCadastro = ecAlterar) then
       Result := oVenda.Atualizar;

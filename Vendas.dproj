@@ -159,7 +159,7 @@
             <Form>frmAtualizaDB</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="DataModule\dmVenda.pas">
+        <DCCReference Include="DataModule\uVendas.pas">
             <Form>dmVendas</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>

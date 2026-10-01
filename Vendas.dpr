@@ -14,7 +14,7 @@ uses
   uCadProduto in 'Cadastros\uCadProduto.pas' {frmCadProduto},
   uClassProduto in 'Classes\uClassProduto.pas',
   uFrmAtualizaDB in 'DataModule\uFrmAtualizaDB.pas' {frmAtualizaDB},
-  dmVenda in 'DataModule\dmVenda.pas' {dmVendas: TDataModule},
+  uVendas in 'DataModule\uVendas.pas' {dmVendas: TDataModule},
   uProVenda in 'Processo\uProVenda.pas' {frmProVenda},
   uClassProVenda in 'Classes\uClassProVenda.pas';
 
