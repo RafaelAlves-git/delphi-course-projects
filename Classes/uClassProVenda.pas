@@ -23,10 +23,12 @@ type
       constructor Create(aConexaoDB: TFDConnection);
       destructor  Destroy; override;
       function Inserir(cds: TClientDataSet): Boolean;
-      function Atualizar: Boolean;
-      function Excluir(): Boolean;
-      function Selecionar(ID: Integer): Boolean;
+      function Atualizar(cds: TClientDataSet): Boolean;
+      function Excluir(cds: TClientDataSet): Boolean;
+      function Selecionar(ID: Integer; var cds: TClientDataSet): Boolean;
       function InserirItens(cds: TClientDataSet; IdVenda: Integer): Boolean;
+      function ApagarItens(cds: TClientDataSet): Boolean;
+      function InNot(cds: TClientDataSet): String;
     published
       property VendaID: Integer read F_VendaID write F_VendaID;
       property ClienteID: Integer read F_ClienteID write F_ClienteID;
@@ -52,12 +54,14 @@ end;
 {$endRegion}
 
 {$region 'CRUD'}
-function TVenda.Atualizar: Boolean;
+function TVenda.Atualizar(cds: TClientDataSet): Boolean;
 var
   qry: TFDQuery;
 begin
   qry := TFDQuery.Create(nil);
   try
+    ConexaoDB.StartTransaction;
+
     qry.Connection := ConexaoDB;
     qry.SQL.Clear;
     qry.SQL.Add('UPDATE VENDAS');
@@ -74,17 +78,30 @@ begin
     try
       qry.ExecSQL();
 
+      // Itens Venda
+      ApagarItens(cds);
+
+      cds.First;
+      while not cds.Eof  do
+      begin
+
+        cds.Next;
+      end;
+
       Result := True;
     except
+      ConexaoDB.Rollback;
       Result := False;
     end;
+
+    ConexaoDB.Commit;
   finally
     if Assigned(qry) then
       FreeAndNil(qry);
   end;
 end;
 
-function TVenda.Excluir(): Boolean;
+function TVenda.Excluir(cds: TClientDataSet): Boolean;
 var
   qry: TFDQuery;
 begin
@@ -171,6 +188,72 @@ begin
   end;
 end;
 
+function TVenda.Selecionar(ID: Integer; var cds: TClientDataSet): Boolean;
+var
+  qry: TFDQuery;
+begin
+  qry := TFDQuery.Create(nil);
+  try
+    qry.Connection := ConexaoDB;
+    qry.SQL.Clear;
+    qry.SQL.Add('SELECT ID, DATA_VENDA, CLIENTE_ID, VALOR_TOTAL');
+    qry.SQL.Add('   FROM VENDAS');
+    qry.SQL.Add('   WHERE ID = (:pVendaID)');
+    qry.ParamByName('pVendaID').Value := ID;
+    try
+      qry.Open();
+
+      Self.F_VendaID := qry.FieldByName('ID').AsInteger;
+      Self.F_DataVenda := qry.FieldByName('DATA_VENDA').AsDateTime;
+      Self.F_ClienteID := qry.FieldByName('CLIENTE_ID').AsInteger;
+      Self.F_TotalVenda := qry.FieldByName('CLIENTE_ID').AsFloat;
+
+      // Itens da Venda
+      cds.First;
+      while not cds.Eof do
+      begin
+        cds.Delete;
+      end;
+
+      qry.Close;
+      qry.SQL.Clear;
+      qry.SQL.Add('SELECT ITENS.VENDA_ID,'+
+                  '       ITENS.PRODUTO_ID,'+
+                  '       PROD.NOME,'+
+                  '       ITENS.VALOR_UNITARIO,'+
+                  '       ITENS.QUANTIDADE,'+
+                  '       ITENS.VALOR_TOTAL'+
+                  ' FROM VENDAS_ITENS AS ITENS'+
+                  '   INNER JOIN PRODUTOS AS PROD ON PROD.ID = ITENS.PRODUTO_ID '+
+                  '   WHERE VENDA_ID = (:pVendaID)');
+      qry.ParamByName('pVendaID').Value := Self.F_VendaID;
+      qry.Open;
+
+      qry.First;
+      while not qry.Eof do
+      begin
+        cds.Append;
+        cds.FieldByName('ProdutoID').AsInteger := qry.FieldByName('PRODUTO_ID').AsInteger;
+        cds.FieldByName('NomeProduto').AsString := qry.FieldByName('NOME').AsString;
+        cds.FieldByName('ValorUnitario').AsFloat := qry.FieldByName('VALOR_UNITARIO').AsFloat;
+        cds.FieldByName('Quantidade').AsFloat := qry.FieldByName('QUANTIDADE').AsFloat;
+        cds.FieldByName('ValorTotalProduto').AsFloat := qry.FieldByName('VALOR_TOTAL').AsFloat;
+        cds.Post;
+
+        qry.Next;
+      end;
+
+      Result := True;
+    except
+      Result := False;
+    end;
+  finally
+    if Assigned(qry) then
+      FreeAndNil(qry);
+  end;
+end;
+{$endRegion}
+
 function TVenda.InserirItens(cds: TClientDataSet; IdVenda: Integer): Boolean;
 var
   qry: TFDQuery;
@@ -196,6 +279,7 @@ begin
       ConexaoDB.Commit;
       Result := True;
     except
+      ConexaoDB.Rollback;
       Result := False;
     end;
   finally
@@ -204,28 +288,28 @@ begin
   end;
 end;
 
-function TVenda.Selecionar(ID: Integer): Boolean;
+function TVenda.ApagarItens(cds: TClientDataSet): Boolean;
 var
   qry: TFDQuery;
 begin
   qry := TFDQuery.Create(nil);
   try
+    ConexaoDB.StartTransaction;
     qry.Connection := ConexaoDB;
+
     qry.SQL.Clear;
-    qry.SQL.Add('SELECT ID, DATA_VENDA, CLIENTE_ID, VALOR_TOTAL');
-    qry.SQL.Add('   FROM VENDAS');
-    qry.SQL.Add('   WHERE ID = (:pVendaID)');
-    qry.ParamByName('pVendaID').Value := ID;
+    qry.SQL.Add('DELETE FROM VENDAS_ITENS');
+    qry.SQL.Add('   WHERE VENDA_ID = :pVENDA_ID AND PRODUTO_ID NOT IN ('+InNot(cds)+') ');
+
+    qry.ParamByName('pVENDA_ID').Value := Self.F_VendaID;
+
     try
-      qry.Open();
+      qry.ExecSQL;
 
-      Self.F_VendaID := qry.FieldByName('ID').AsInteger;
-      Self.F_DataVenda := qry.FieldByName('DATA_VENDA').AsDateTime;
-      Self.F_ClienteID := qry.FieldByName('CLIENTE_ID').AsInteger;
-      Self.F_TotalVenda := qry.FieldByName('CLIENTE_ID').AsFloat;
-
+      ConexaoDB.Commit;
       Result := True;
     except
+      ConexaoDB.Rollback;
       Result := False;
     end;
   finally
@@ -233,5 +317,24 @@ begin
       FreeAndNil(qry);
   end;
 end;
-{$endRegion}
+
+function TVenda.InNot(cds: TClientDataSet): String;
+var
+  sInNot: String;
+begin
+  sInNot := EmptyStr;
+
+  cds.First;
+  while not cds.Eof do
+  begin
+    if sInNot = EmptyStr then
+      sInNot := cds.FieldByName('ProdutoID').AsString
+    else
+      sInNot := sInNot+ ','+ cds.FieldByName('ProdutoID').AsString;
+
+    cds.Next;
+  end;
+
+  Result := sInNot;
+end;
 end.

@@ -14,11 +14,10 @@ inherited frmProVenda: TfrmProVenda
       ExplicitLeft = 898
     end
     inherited btnGravar: TBitBtn
-      ExplicitLeft = 277
+      ExplicitLeft = 271
     end
   end
   inherited pgcPrincipal: TPageControl
-    ActivePage = tabManutencao
     ExplicitWidth = 989
     ExplicitHeight = 615
     inherited tabListagem: TTabSheet

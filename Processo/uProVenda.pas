@@ -55,6 +55,7 @@ type
     procedure btnGravarClick(Sender: TObject);
     procedure btnRemoverItemClick(Sender: TObject);
     procedure gridItensVendaDblClick(Sender: TObject);
+    procedure grdListagemDblClick(Sender: TObject);
   private
     { Private declarations }
     dtmVenda: TdmVendas;
@@ -94,7 +95,7 @@ begin
     Result := oVenda.Inserir(dmVendas.cdsItensVenda)
   else
     if (EstadoDoCadastro = ecAlterar) then
-      Result := oVenda.Atualizar;
+      Result := oVenda.Atualizar(dmVendas.cdsItensVenda);
 end;
 
 procedure TfrmProVenda.lkpProdutoExit(Sender: TObject);
@@ -112,8 +113,8 @@ end;
 
 function TfrmProVenda.Excluir: Boolean;
 begin
-  if oVenda.Selecionar(qryListagem.FieldByName('ID').AsInteger) then
-    Result := oVenda.Excluir()
+  if oVenda.Selecionar(qryListagem.FieldByName('ID').AsInteger, dmVendas.cdsItensVenda) then
+    Result := oVenda.Excluir(dmVendas.cdsItensVenda)
 end;
 {$endRegion}
 
@@ -176,6 +177,7 @@ end;
 
 procedure TfrmProVenda.LimparClientDataSet;
 begin
+  dmVendas.cdsItensVenda.First;
   while not dmVendas.cdsItensVenda.Eof do
     dmVendas.cdsItensVenda.Delete;
 end;
@@ -190,7 +192,7 @@ end;
 
 procedure TfrmProVenda.btnAlterarClick(Sender: TObject);
 begin
-  if oVenda.Selecionar(qryListagem.FieldByName('ID').AsInteger) then
+  if oVenda.Selecionar(qryListagem.FieldByName('ID').AsInteger, dmVendas.cdsItensVenda) then
     begin
       edtVendaID.Text := IntToStr(oVenda.VendaID);
       lkpCliente.KeyValue := oVenda.ClienteID;
@@ -242,6 +244,12 @@ begin
      edtValorTotal.Value := TotalizarVenda;
      LimparComponenteItem;
   end;
+end;
+
+procedure TfrmProVenda.grdListagemDblClick(Sender: TObject);
+begin
+  inherited;
+  edtValorTotal.Value := TotalizarVenda;
 end;
 
 procedure TfrmProVenda.gridItensVendaDblClick(Sender: TObject);
