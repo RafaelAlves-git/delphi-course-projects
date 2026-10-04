@@ -169,6 +169,7 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Classes\uClassProVenda.pas"/>
+        <DCCReference Include="Classes\uClassControleEstoque.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

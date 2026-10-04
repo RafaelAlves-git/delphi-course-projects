@@ -16,7 +16,8 @@ uses
   uFrmAtualizaDB in 'DataModule\uFrmAtualizaDB.pas' {frmAtualizaDB},
   uVendas in 'DataModule\uVendas.pas' {dmVendas: TDataModule},
   uProVenda in 'Processo\uProVenda.pas' {frmProVenda},
-  uClassProVenda in 'Classes\uClassProVenda.pas';
+  uClassProVenda in 'Classes\uClassProVenda.pas',
+  uClassControleEstoque in 'Classes\uClassControleEstoque.pas';
 
 {$R *.res}
 

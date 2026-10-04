@@ -14,12 +14,12 @@ inherited frmProVenda: TfrmProVenda
       ExplicitLeft = 898
     end
     inherited btnGravar: TBitBtn
-      ExplicitLeft = 271
+      ExplicitTop = 2
     end
   end
   inherited pgcPrincipal: TPageControl
-    ExplicitWidth = 989
-    ExplicitHeight = 615
+    ExplicitLeft = -1
+    ExplicitTop = -5
     inherited tabListagem: TTabSheet
       inherited pnlListagemTopo: TPanel
         StyleElements = [seFont, seClient, seBorder]
@@ -57,6 +57,7 @@ inherited frmProVenda: TfrmProVenda
           item
             Expanded = False
             FieldName = 'VALOR_TOTAL'
+            Title.Caption = 'Total da Venda'
             Width = 100
             Visible = True
           end>
@@ -119,8 +120,6 @@ inherited frmProVenda: TfrmProVenda
         Height = 521
         Align = alBottom
         TabOrder = 3
-        ExplicitTop = 64
-        ExplicitWidth = 981
         object Panel2: TPanel
           Left = 1
           Top = 1
@@ -128,7 +127,6 @@ inherited frmProVenda: TfrmProVenda
           Height = 74
           Align = alTop
           TabOrder = 0
-          ExplicitWidth = 979
           object lbProduto: TLabel
             Left = 15
             Top = 14
@@ -251,7 +249,6 @@ inherited frmProVenda: TfrmProVenda
               00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
             TabOrder = 3
             OnClick = btnAdicionarItemClick
-            ExplicitLeft = 769
           end
           object btnRemoverItem: TBitBtn
             AlignWithMargins = True
@@ -291,7 +288,6 @@ inherited frmProVenda: TfrmProVenda
             TabOrder = 5
             TabStop = False
             OnClick = btnRemoverItemClick
-            ExplicitLeft = 875
           end
         end
         object Panel3: TPanel
@@ -301,7 +297,6 @@ inherited frmProVenda: TfrmProVenda
           Height = 397
           Align = alClient
           TabOrder = 1
-          ExplicitWidth = 979
           object gridItensVenda: TDBGrid
             Left = 1
             Top = 1
@@ -361,7 +356,6 @@ inherited frmProVenda: TfrmProVenda
           Height = 48
           Align = alBottom
           TabOrder = 2
-          ExplicitWidth = 979
           object Label1: TLabel
             Left = 755
             Top = 16
